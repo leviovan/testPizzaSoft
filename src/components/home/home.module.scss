@@ -1,0 +1,27 @@
+$base-color: rgb(162, 212, 255);
+
+
+
+.home{
+    
+    background-color: $base-color;
+    .header{
+        padding: 20px;
+        font-size: clamp(10px, 4em, 40px);
+        .list{
+            display: flex;
+            text-decoration: none;
+            list-style-type:none;
+            justify-content: center;
+            margin: 0 auto;
+            .item{
+               
+                margin: 5px;
+                width: 250px;
+                text-align: left;
+            }
+        }
+    }
+
+
+}

@@ -1,0 +1,26 @@
+
+$second-color: rgb(213, 235, 255);
+
+
+.users{
+    font-size: 18px; 
+    line-height: 140%;
+    .list{
+        display: flex;
+        text-decoration: none;
+        list-style-type:none;
+        justify-content: center;
+        margin: 0 auto;
+        &:nth-child(odd){
+                    background-color: $second-color;
+                    box-shadow: -50em 0px 0px 0px $second-color,
+                                 50em 0px 0px 0px $second-color
+            }
+        .item{
+            margin: 5px;
+            width: 250px;
+            text-align: left;
+           
+        }
+    }
+}
