@@ -16,10 +16,9 @@ export interface UsersState {
 }
 const initialState: UsersState = {
     users:[],
-   usersFilter:[],
+    usersFilter:[],
     error:"string",
     isLoading:false
-
 }
 export const fetchUsers= createAsyncThunk(
   'users/fetch',
@@ -33,16 +32,20 @@ export const userSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    changeRole:(state,{payload})=>{     
-      state.usersFilter = state.usersFilter.map((user)=> user.id === payload.id ? {...user,role:payload.role}: user)
-      state.users = state.users.map((user)=> user.id === payload.id ? {...user,role:payload.role}: user)
-      console.log(state.usersFilter);
+     changeUser:(state,{payload})=>{    
+      state.users = state.users.map((user)=> user.id === payload.id ? {...user,...payload}: user)
+      state.usersFilter = state.users
+    },
+    // changeRole:(state,{payload})=>{     
+    //   state.usersFilter = state.usersFilter.map((user)=> user.id === payload.id ? {...user,role:payload.role}: user)
+    //   state.users = state.users.map((user)=> user.id === payload.id ? {...user,role:payload.role}: user)
+    //   console.log(state.usersFilter);
       
-    },
-    changeArchive:(state,{payload})=>{
-        state.users = state.users.map((user)=> user.id === payload.id ? {...user, isArchive:!user.isArchive}: user)
-        state.usersFilter = state.usersFilter.map((user)=> user.id === payload.id ? {...user, isArchive:!user.isArchive}: user)
-    },
+    // },
+    // changeArchive:(state,{payload})=>{
+    //     state.users = state.users.map((user)=> user.id === payload.id ? {...user, isArchive:!user.isArchive}: user)
+    //     state.usersFilter = state.usersFilter.map((user)=> user.id === payload.id ? {...user, isArchive:!user.isArchive}: user)
+    // },
     sortUserBy:(state,{payload})=>{
       state.usersFilter.sort((a,b)=>{
       const nameA = a[payload as keyof typeof a]; 
@@ -84,6 +87,6 @@ export const userSlice = createSlice({
   },
 })
 
-export const {changeRole,changeArchive,sortUserBy,filterBy,resetFilter  } = userSlice.actions
+export const {changeUser,sortUserBy,filterBy,resetFilter  } = userSlice.actions
 
 export default userSlice.reducer

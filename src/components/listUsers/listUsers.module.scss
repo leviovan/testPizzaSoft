@@ -5,22 +5,28 @@ $second-color: rgb(213, 235, 255);
 .users{
     font-size: 18px; 
     line-height: 140%;
+    a{
+        display: block;
+          &:nth-child(odd){
+                    background-color: $second-color;
+                    box-shadow: -50em 0px 0px 0px $second-color,
+                                 50em 0px 0px 0px $second-color
+            }
+            text-decoration: none;
     .list{
+        position: relative;
         display: flex;
         text-decoration: none;
         list-style-type:none;
         justify-content: center;
         margin: 0 auto;
-        &:nth-child(odd){
-                    background-color: $second-color;
-                    box-shadow: -50em 0px 0px 0px $second-color,
-                                 50em 0px 0px 0px $second-color
-            }
         .item{
+            position: relative;
             margin: 5px;
             width: 250px;
             text-align: left;
-           
+            z-index: 50;
         }
     }
+}
 }

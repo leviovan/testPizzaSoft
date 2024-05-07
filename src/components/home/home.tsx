@@ -10,13 +10,11 @@ import { role } from "../../assets/role";
 
 const Home = () => {
   const filterUsers = useSelector((s: RootState) => s.users.usersFilter);
-
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(fetchUsers());
   }, []);
-
   return (
     <div className={style.home}>
       <div className="container">
@@ -32,7 +30,6 @@ const Home = () => {
             <li className={style.item}>В архиве</li>
           </ul>
         </div>
-
         <TopPanel field={role} />
         <ListUsers users={filterUsers} />
       </div>
