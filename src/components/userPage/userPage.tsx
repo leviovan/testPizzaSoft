@@ -31,6 +31,7 @@ const UserPage = () => {
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     dispatch(changeUser(data));
+    alert("Вы обновили данные пользователя ");
   };
   return (
     <div className={style.page}>
