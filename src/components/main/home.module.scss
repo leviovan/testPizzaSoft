@@ -1,5 +1,5 @@
 $base-color: rgb(162, 212, 255);
-
+$second-color: rgb(213, 235, 255);
 
 
 .home{
@@ -8,6 +8,7 @@ $base-color: rgb(162, 212, 255);
     .header{
         padding: 20px;
         font-size: clamp(10px, 4em, 40px);
+        border-bottom: 1px solid $second-color ;
         .list{
             display: flex;
             text-decoration: none;

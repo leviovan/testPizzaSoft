@@ -1,8 +1,8 @@
 import "./App.scss";
-import Main from "./components/home/home";
+import Home from "./components/main/home";
 
 function App() {
-  return <Main />;
+  return <Home />;
 }
 
 export default App;

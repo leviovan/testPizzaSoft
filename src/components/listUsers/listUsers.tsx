@@ -1,8 +1,22 @@
+import { useDispatch } from "react-redux";
+import {
+  UserState,
+  changeArchive,
+  changeRole,
+} from "../store/usersSlice/userSlice";
 import style from "./listUsers.module.scss";
-import { UserState } from "../../services/userApi";
+import { AppDispatch } from "../store/store";
 
 const ListUsers = ({ users }: { users: UserState[] }) => {
-  console.log(users);
+  const dispatch = useDispatch<AppDispatch>();
+  const handlerSelectRole = (user: UserState) => {
+    console.log(user);
+
+    dispatch(changeRole(user));
+  };
+  const handlerArchive = (user: UserState) => {
+    dispatch(changeArchive(user));
+  };
 
   return (
     <div className={style.users}>
@@ -13,11 +27,27 @@ const ListUsers = ({ users }: { users: UserState[] }) => {
               {user.name}
             </li>
             <li className={style.item} id="name">
-              {user.role}
+              <select
+                name="Должность"
+                onChange={(e) =>
+                  handlerSelectRole({ ...user, role: e.currentTarget.value })
+                }
+                defaultValue={user.role}
+              >
+                <option value="cook">Повар</option>
+                <option value="waiter">Официант</option>
+                <option value="driver">Водитель</option>
+              </select>
             </li>
             <li className={style.item}> {user.phone}</li>
             <li className={style.item}>
-              {<input type="checkbox" checked={!!user.isArchive} />}
+              {
+                <input
+                  onChange={() => handlerArchive(user)}
+                  type="checkbox"
+                  checked={!!user.isArchive}
+                />
+              }
             </li>
           </ul>
         ))}

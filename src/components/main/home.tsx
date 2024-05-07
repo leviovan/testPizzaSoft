@@ -1,10 +1,21 @@
 import style from "./home.module.scss";
 
-import { UserState, useGetUserQuery } from "../../services/userApi";
 import ListUsers from "../listUsers/listUsers";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../store/store";
+import { fetchUsers } from "../store/usersSlice/userSlice";
+import { useEffect } from "react";
+import TopPanel from "../topPanel/topPanel";
+import { role } from "../../assets/role";
 
 const Home = () => {
-  const { data } = useGetUserQuery("http://localhost:3000");
+  const filterUsers = useSelector((s: RootState) => s.users.usersFilter);
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, []);
 
   return (
     <div className={style.home}>
@@ -22,7 +33,8 @@ const Home = () => {
           </ul>
         </div>
 
-        <ListUsers users={data as UserState[]} />
+        <TopPanel field={role} />
+        <ListUsers users={filterUsers} />
       </div>
     </div>
   );
